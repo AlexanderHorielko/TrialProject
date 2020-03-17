@@ -22,24 +22,25 @@ class Question{
         return this.correctAnswer;
     }
     showQuestion(){
-        let divQuestion = document.querySelector('.quiz > .question');
+        let divQuestion = document.querySelector('.question');
         divQuestion.innerHTML = this.question;
     }
     showAnswers(){
-        let divAnswers = document.querySelectorAll('.quiz > .answers > a');
+        let divAnswers = document.querySelectorAll('.answers > div');
         for (let i = 0; i < this.answers.length; i++){
             divAnswers[i].innerHTML = this.answers[i];
+            divAnswers[i].innerHTML += " <i class=\"fas fa-check\"></i>";
             divAnswers[i].setAttribute('data-click', 'click');
         }
     }
     static showProgressBar(){
-        let divProgressText = document.querySelector('.progress div:first-child');
+        let divProgressText = document.querySelector('.progress div');
         divProgressText.innerHTML = `${this.counterQuestions + 1}/12`;
         let bar = document.getElementById('bar');
         bar.style.width = `${((this.counterQuestions + 1) / 12) * 100}` + '%';
     }
     static deleteChildElements() {
-        let divContent = document.querySelector(".content");
+        let divContent = document.querySelector(".header");
         let lastChild = divContent.lastElementChild;
 
         while (lastChild) {
@@ -48,48 +49,30 @@ class Question{
         }
     }
     static setResultElements(){
-        let divContent = document.querySelector(".content");
-        let divProgressText = document.createElement('div');
-        let spanProgressCorrect = document.createElement('span');
-        let divResultText = document.createElement('div');
-        let divYourQuestions = document.createElement('div');
-        let divIcons = document.createElement('div');
-
-        divContent.style.width = '80' + '%';
-        divProgressText.style.marginBottom = '50' + 'px';
-        divProgressText.style.marginTop = '30' + 'px';
-
+        let spanProgressCorrect = document.querySelector('.resultProgress > span');
+        let divConclusion = document.querySelector('.resultConclusion');
+        let bgPicture = document.querySelector('.backgroundPicture');
+        let resBlock = document.querySelector('.resultBlock');
+        let divContent = document.querySelector('.content');
+        divContent.style.display = 'none';
+        resBlock.style.display = 'block';
+        let bgPictureHeight = 679 + 412 * 2;
+        bgPicture.style.height = `${bgPictureHeight}` + 'px';
         spanProgressCorrect.innerHTML = `${this.totalScore}`;
-        spanProgressCorrect.classList.add('resultHighlight');
 
-        divContent.append(divProgressText);
-        divProgressText.append(spanProgressCorrect);
         spanProgressCorrect.after('/12');
 
         if (this.totalScore >= 0 && this.totalScore < 5){
-            divResultText.innerHTML = 'Маловато правильных ответов даже для человека ' +
+            divConclusion.innerHTML = 'Маловато правильных ответов даже для человека ' +
                 'с гуманитарным складом ума, ведь многие вопросы были общими.'
         }else if(this.totalScore >= 5 && this.totalScore < 9){
-            divResultText.innerHTML = 'Не много, не мало. Нормальный результат для' +
+            divConclusion.innerHTML = 'Не много, не мало. Нормальный результат для' +
                 ' «гуманитария». Если вы считаете, ' +
-                'что у вас всё же технический склад ума, значит вам просто попались не те вопросы.'
+                'что у вас технический склад ума, значит вам просто попались не те вопросы.'
         }else{
-            divResultText.innerHTML = 'Ух ты! Вот это результат! У вас точно технический склад ума' +
+            divConclusion.innerHTML = 'Ух ты! Вот это результат! У вас точно технический склад ума' +
                 ' – гуманитариям ответы на многие вопросы не известны, потому что попросту не интересны.'
         }
-        divResultText.classList.add('resultHighlight');
-        divResultText.style.marginBottom = '50' + 'px';
-        divProgressText.after(divResultText);
-
-        divYourQuestions.innerHTML = 'А какие интересные вопросы знаете вы?';
-        divYourQuestions.style.color = 'grey';
-        divYourQuestions.style.marginBottom = '50' + 'px';
-        divResultText.after(divYourQuestions);
-
-        divIcons.innerHTML = '<i class="fab fa-telegram-plane"></i> <i class="fab fa-vk"></i> ' +
-            '<i class="fab fa-twitter"></i> <i class="fab fa-facebook-f"></i>';
-
-        divYourQuestions.after(divIcons);
     }
 }
 
@@ -123,14 +106,15 @@ let questionsArray = [
 question1.showQuestion();
 question1.showAnswers();
 Question.showProgressBar();
-
+let resBlock = document.querySelector('.resultBlock');
+resBlock.style.display = "none";
 document.addEventListener('click', function (event) {
     if (event.target.dataset.click !== undefined ){
         let counter = Question.getCounter();
-        if (event.target.innerHTML === questionsArray[counter].getCorrectAnswer()){
+        let userAnswer = event.target.innerHTML.replace(" <i class=\"fas fa-check\"></i>", '');
+        if (userAnswer === questionsArray[counter].getCorrectAnswer()){
             let score = Question.getScore();
             Question.setScore(score + 1);
-            console.log(score);
         }
         if (counter < 11){
             Question.setCounter(counter + 1);

@@ -1,69 +1,189 @@
+body{
+    font-family: "LitteraPlain";
+}
 .backgroundPicture{
-    z-index: -1;
     position: absolute;
-    top: 0;
+    width: 1920px;
+    height: 400px;
     left: 0;
+    top: 0;
+    z-index: -1;
     background: url("images/fixedTopImage.jpg") no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 300px;
 }
-.content{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100px;
-    margin: 0 auto 50px;
-    padding: 20px 60px;
-    width: 50%;
+.header{
+    margin: 241px auto 0;
+    width: 790px;
+    height: 159px;
     background-color: white;
     text-align: center;
+    display: table;
 }
-.head > p{
-    width: 80%;
+.header > div{
+    width: 586px;
+    height: 84px;
     margin: 0 auto;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 120%;
+
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color: #202020;
 }
-.head{
-    margin-bottom: 50px;
+.subHeader{
+    width: 507px;
+    height: 63px;
+    margin: 23px auto 0;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #202020;
 }
-.quiz > .question, .progress > p, .progress div:first-child{
-    font-size: 22px;
-}
-.quiz > .question{
-    margin-bottom: 40px;
-}
-.quiz > .answers{
-    background-color: #FAFAFA;
-    padding: 10px 0;
-}
-.quiz > .answers > a{
-    display: block;
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    padding: 20px 10px;
-    text-align: left;
-    width: 80%;
-    margin: 0 auto;
-    transition: 0.2s ease;
-}
-.quiz > .answers > a:hover {
-    background-color: #EFE0B0;
+.progress{
+    width: 52px;
+    height: 32px;
+    margin: 100px auto 0;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+
+    text-align: center;
+
+    color: #000000;
 }
 .progressBar{
-    width: 70%;
-    background-color: grey;
-    margin: 0 auto 20px;
+    width: 502px;
+    height: 0;
+    margin: 30px auto 0;
+    background-color: #D1D1D1;
+    border: 2px solid #D1D1D1;
 }
 #bar{
-    width: 0;
+    position: relative;
+    left: -2px;
+    top: -2px;
     background-color: black;
+    border: 2px solid #000;
 }
-.progressBar, #bar{
-    height: 5px;
-    border-radius: 10px;
+.question{
+    width: 535px;
+    margin: 50px auto 0;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 33px;
+    text-align: center;
+
+    color: #202020;
+
 }
-.resultHighlight{
-    font-size: 26px;
-    color: orange;
+.answers{
+    width: 535px;
+    margin: 50px auto 0;
+    padding: 15px 31px 16px 29px;
+
+    background: #FAFAFA;
+}
+.answers > div{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    padding: 13px 10px 18px;
+}
+.answers > div > i{
+    display: none;
+    float: right;
+    color: #EB7F00;
+}
+.answers > div:not(:last-child){
+    margin-bottom: 37px;
+}
+.answers > div:hover {
+    background-color: #EFE0B0;
+    cursor: pointer;
+}
+.answers > div:hover > i{
+    display: inline-block;
+}
+.resultBlock{
+    width: 1356px;
+    margin: 412px auto;
+    background: #FFFFFF;
+}
+.resultProgress{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 120%;
+
+    text-align: center;
+    padding-top: 80px;
+    color: #202020;
+}
+.resultProgress > span{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 80px;
+    line-height: 120%;
+
+    text-align: center;
+
+    color: #EB7F00;
+}
+.resultConclusion{
+    margin: 70px auto 0;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 120%;
+
+    text-align: center;
+
+    color: #EB7F00;
+}
+.resultQuestion{
+    margin: 30px 0 75px;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 120%;
+
+    text-align: center;
+
+    color: #202020;
+
+    opacity: 0.6;
+}
+.icons{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 93px;
+    font-size: 25px;
+}
+.icons > i{
+    display: block;
+}
+.icons > i:not(:last-child){
+    margin-right: 55px;
+}
+
+@font-face {
+    font-family: "LitteraPlain";
+    src: url("font/LitteraPlain/LitteraPlainBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
 }
